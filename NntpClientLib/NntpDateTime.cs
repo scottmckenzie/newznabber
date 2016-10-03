@@ -19,7 +19,7 @@ namespace NntpClientLib
         public NntpDateTime(DateTime dt)
         {
             _dtime = dt;
-            _utcOffset = TimeZone.CurrentTimeZone.GetUtcOffset(dt);
+            _utcOffset = TimeZoneInfo.Local.GetUtcOffset(dt);
         }
 
         public NntpDateTime(DateTime dt, TimeSpan utcOffset)
@@ -125,7 +125,7 @@ namespace NntpClientLib
                     year = (year < 50) ? year + 2000 : year + 1999;
                 }
 
-                var month = Array.IndexOf(MonthNames, m.Groups["month"].Value.ToLower(Rfc977NntpClient.CultureInfo)) + 1;
+                var month = Array.IndexOf(MonthNames, m.Groups["month"].Value.ToLowerInvariant()) + 1;
 
                 var day = m.Groups["day"].Success ? ParseInt32(m.Groups["day"].Value) : 1;
                 var hour = m.Groups["hour"].Success ? ParseInt32(m.Groups["hour"].Value) : 0;
@@ -158,7 +158,7 @@ namespace NntpClientLib
                 return TimeSpan.Zero;
             }
             var hours = 0;
-            switch (s.ToLower(Rfc977NntpClient.CultureInfo))
+            switch (s.ToLowerInvariant())
             {
                 case "ut":
                 case "utc":

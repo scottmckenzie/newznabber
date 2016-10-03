@@ -75,7 +75,7 @@ namespace NntpClientLib
         {
             foreach (var hs in RetrieveHelp())
             {
-                var s = hs.ToLower(CultureInfo.InvariantCulture);
+                var s = hs.ToLowerInvariant();
                 if (s.IndexOf("xover") != -1)
                 {
                     SupportsXover = true;

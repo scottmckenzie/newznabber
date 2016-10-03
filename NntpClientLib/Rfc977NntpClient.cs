@@ -235,7 +235,8 @@ namespace NntpClientLib
                 throw new ArgumentNullException("hostName");
             }
 
-            _connection = new TcpClient(hostName, port);
+            _connection = new TcpClient();
+            _connection.ConnectAsync(hostName, port);
             NntpReaderWriter = new NntpProtocolReaderWriter(_connection);
             if (_logger != null)
             {
@@ -264,14 +265,13 @@ namespace NntpClientLib
 
                     NntpReaderWriter.Dispose();
                     NntpReaderWriter = null;
-                    _connection.Close();
                 }
             }
             finally
             {
                 try
                 {
-                    _connection.Close();
+                    _connection.Dispose();
                 }
                 catch
                 {
@@ -480,7 +480,7 @@ namespace NntpClientLib
                 throw new ArgumentNullException("direction");
             }
 
-            if (!(direction.Equals("LAST", StringComparison.InvariantCultureIgnoreCase) || direction.Equals("NEXT", StringComparison.InvariantCultureIgnoreCase)))
+            if (!(direction.Equals("LAST", StringComparison.OrdinalIgnoreCase) || direction.Equals("NEXT", StringComparison.OrdinalIgnoreCase)))
             {
                 throw new ArgumentException(Resource.ErrorMessage03, "direction");
             }

@@ -110,7 +110,7 @@ namespace NntpClientLib
             }
             try
             {
-                _writer.Close();
+                _writer.Dispose();
             }
             catch
             {
@@ -130,7 +130,7 @@ namespace NntpClientLib
             {
                 try
                 {
-                    _connection.GetStream().Close();
+                    _connection.GetStream().Dispose();
                 }
                 catch
                 {

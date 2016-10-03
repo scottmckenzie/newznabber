@@ -10,6 +10,7 @@
 
 namespace NntpClientLib {
     using System;
+    using System.Reflection;
     
     
     /// <summary>
@@ -39,7 +40,7 @@ namespace NntpClientLib {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NntpClientLib.Resource", typeof(Resource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NntpClientLib.Resource", typeof(Resource).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

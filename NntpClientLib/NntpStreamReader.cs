@@ -106,7 +106,7 @@ namespace NntpClientLib
             _currentDecodePosition = 0;
         }
 
-        public override void Close()
+        public void Close()
         {
             Dispose(true);
         }
@@ -117,7 +117,7 @@ namespace NntpClientLib
             {
                 if (disposing && _baseStream != null)
                 {
-                    _baseStream.Close();
+                    _baseStream.Dispose();
                 }
 
                 _inputBuffer = null;

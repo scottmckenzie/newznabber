@@ -2,7 +2,6 @@ using System;
 
 namespace NntpClientLib
 {
-    [Serializable]
     public sealed class NewsgroupHeader
     {
         /// <summary>
